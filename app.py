@@ -154,9 +154,9 @@ model = GPT_LLM(vocab_size).to(device)
 model.load_state_dict(torch.load(f='gpt0.pt', map_location=torch.device(device)))
 
 while True:
-  n = input("Number of words: \n")
+  n = int(input("Number of words: \n"))
   prompt = input("Prompt:\n")
-  context = torch.tensor(enc(prompt), dtype=torch.long, device=device)
+  context = torch.tensor(enc(prompt), dtype=torch.long, device=device).unsqueeze(dim=0)
   res = lmodel.genTokens(n,context)
   str = ''
   for i in dec(res[0].tolist()):
