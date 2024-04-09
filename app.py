@@ -157,7 +157,7 @@ while True:
   n = int(input("Number of words: \n"))
   prompt = input("Prompt:\n")
   context = torch.tensor(enc(prompt), dtype=torch.long, device=device).unsqueeze(dim=0)
-  res = lmodel.genTokens(n,context)
+  res = model.genTokens(n,context)
   str = ''
   for i in dec(res[0].tolist()):
     str += i 
